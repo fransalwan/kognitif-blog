@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
+---
+
+<BaseLayout
+  title="kognitif | Systems, Hardware & Cyber Security"
+  description="Technical essays and deep-dives at the intersection of AI hardware, thermal physics, and low-level security."
+>
+  <section class="mb-14">
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-100 font-mono mb-4">
+      kognitif<span class="text-emerald-500">_</span>
+    </h1>
+    <p class="text-neutral-400 text-lg leading-relaxed max-w-2xl">
+      Rigorous technical essays on high-density accelerator architectures, thermal dissipation limits, low-level binary exploitation, and the physics of machine intelligence.
+    </p>
+  </section>
+
+  <section aria-label="Essays">
+    <div class="flex items-center justify-between pb-4 mb-6 border-b border-neutral-800">
+      <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400">Published Essays</h2>
+      <span class="text-xs font-mono text-neutral-600">{posts.length} {posts.length === 1 ? 'article' : 'articles'}</span>
+    </div>
+
+    <div class="divide-y divide-neutral-900">
+      {posts.map((post) => (
+        <article class="py-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">
+            <h3 class="text-xl font-semibold text-neutral-200 group-hover:text-emerald-400 transition-colors">
+              <a href={`/blog/${post.slug}`} class="focus:outline-none focus:underline">
+                {post.data.title}
+              </a>
+            </h3>
+            <time datetime={post.data.pubDate.toISOString()} class="text-xs font-mono text-neutral-500 shrink-0">
+              {formatDate(post.data.pubDate)}
+            </time>
+          </div>
+          <p class="text-neutral-400 text-sm leading-relaxed mb-3 line-clamp-2">
+            {post.data.description}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-400">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
