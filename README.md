@@ -104,6 +104,6 @@ npm run preview
 **Frans Alwan Purba**  
 Graduate Researcher in Artificial Intelligence  
 Universitas Gadjah Mada (UGM), Yogyakarta, Indonesia  
-- **Email:** [fransalwan@mail.ugm.ac.id](mailto:fransalwan@mail.ugm.ac.id)  
+- **Email:** [fransalwanpurba@mail.ugm.ac.id](mailto:fransalwanpurba@mail.ugm.ac.id)  
 - **GitHub:** [@fransalwan](https://github.com/fransalwan)  
 - **Web Portfolio:** [kognitif-blog.netlify.app](https://kognitif-blog.netlify.app)
