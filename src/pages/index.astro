@@ -82,8 +82,8 @@ const formatDate = (date: Date) => {
       </span>
     </div>
 
-    <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/50 shadow-sm backdrop-blur-sm transition-colors">
-      <div class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
+    <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 shadow-xs transition-colors">
+      <div class="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-semibold mb-2">
         Master of Computer Science (M.Cs.) Thesis Proposal &middot; FMIPA Universitas Gadjah Mada
       </div>
       <h3 class="text-xl sm:text-2xl font-bold font-mono text-neutral-900 dark:text-neutral-100 mb-3 leading-snug">
@@ -97,12 +97,12 @@ const formatDate = (date: Date) => {
         Instance-Dependent Cost-Sensitive (IDCS) classifiers significantly improve cost-efficiency in credit scoring by incorporating customer-specific loan amounts into the loss function. However, recent benchmarks (Ballegeer et al., 2025) demonstrate that IDCS models generate severely unstable SHAP and LIME explanations under class imbalance ($p &lt; 0.001$). This study introduces a <strong>two-pronged diagnostic framework</strong>: (1) employing parametric regularization to constrain weight complexity without sacrificing cost savings, and (2) performing stratified cost permutation (cost-shuffle) to establish the first causal evidence for the <em>feature-cost entanglement</em> hypothesis.
       </p>
 
-      <div class="grid sm:grid-cols-2 gap-3 p-4 rounded-lg bg-neutral-100/80 dark:bg-neutral-950/60 border border-neutral-200 dark:border-neutral-800 text-xs font-mono mb-6">
-        <div>
+      <div class="grid sm:grid-cols-2 gap-3 p-4 rounded-xl bg-neutral-100/90 dark:bg-neutral-950/60 border border-neutral-200 dark:border-neutral-800 text-xs font-mono mb-6">
+        <div class="text-neutral-700 dark:text-neutral-400">
           <span class="text-neutral-900 dark:text-neutral-200 font-semibold block mb-1">Arm 1 &middot; Regularization Intervention</span>
           Assessing $L_1/L_2$, inverse regularization $C$, and tree-depth tuning to curb gradient swings and stabilize CoV/SRA beyond the explainer noise floor.
         </div>
-        <div>
+        <div class="text-neutral-700 dark:text-neutral-400">
           <span class="text-neutral-900 dark:text-neutral-200 font-semibold block mb-1">Arm 2 &middot; Causal Cost-Shuffle Test</span>
           Decoupling instance costs from customer features via stratified permutation to verify if instability stems from cost entanglement.
         </div>

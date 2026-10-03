@@ -3,14 +3,24 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+}
+
+html.dark {
   color-scheme: dark;
 }
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+  color: #171717;
+  scroll-behavior: smooth;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark {
   background-color: #0a0a0a;
   color: #ededed;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -25,4 +35,31 @@ body {
 pre code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
+}
+
+/* Custom scrollbar styling for high-contrast academic readability */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #262626;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #404040;
 }

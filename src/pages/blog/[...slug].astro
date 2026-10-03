@@ -32,16 +32,16 @@ const formatDate = (date: Date) => {
   pubDate={post.data.pubDate}
 >
   <article class="max-w-3xl mx-auto">
-    <header class="mb-10 pb-8 border-b border-neutral-800">
+    <header class="mb-10 pb-8 border-b border-neutral-200 dark:border-neutral-800 transition-colors">
       <div class="mb-4">
-        <a href="/" class="text-xs font-mono text-emerald-500 hover:text-emerald-400 inline-flex items-center gap-1 transition-colors">
+        <a href="/" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1 transition-colors">
           &larr; Back to essays
         </a>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-100 font-mono mb-4 leading-tight">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 font-mono mb-4 leading-tight">
         {post.data.title}
       </h1>
-      <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
+      <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-600 dark:text-neutral-400">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
@@ -50,9 +50,9 @@ const formatDate = (date: Date) => {
             (Updated: {formatDate(post.data.updatedDate)})
           </span>
         )}
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           {post.data.tags.map((tag: string) => (
-            <span class="px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-400">
+            <span class="px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400">
               #{tag}
             </span>
           ))}
@@ -60,9 +60,8 @@ const formatDate = (date: Date) => {
       </div>
     </header>
 
-    <div class="prose prose-invert prose-lg max-w-none prose-neutral prose-headings:font-mono prose-headings:font-semibold prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-neutral-800 prose-pre:bg-neutral-900">
+    <div class="prose dark:prose-invert prose-lg max-w-none prose-neutral prose-headings:font-mono prose-headings:font-semibold prose-headings:text-neutral-900 dark:prose-headings:text-neutral-100 prose-p:text-neutral-800 dark:prose-p:text-neutral-300 prose-li:text-neutral-800 dark:prose-li:text-neutral-300 prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-neutral-200 dark:prose-pre:border-neutral-800 prose-pre:bg-neutral-900 prose-pre:text-neutral-100 prose-code:text-emerald-800 dark:prose-code:text-emerald-300 prose-code:bg-emerald-50 dark:prose-code:bg-emerald-950/40 prose-code:border prose-code:border-emerald-200 dark:prose-code:border-emerald-800/40 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none transition-colors">
       <Content />
     </div>
   </article>
 </BaseLayout>
-
