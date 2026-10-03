@@ -26,3 +26,10 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Private Academic Manuscripts and Drafts
+*.pdf
+*.docx
+*.doc
+*.pptx
+

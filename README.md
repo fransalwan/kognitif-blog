@@ -1,24 +1,47 @@
-# kognitif-blog
+# Frans Alwan Purba &middot; Academic Research Portfolio
 
-> **High-Performance Static Technical Journal**  
-> Deep-dive engineering insights at the intersection of **Artificial Intelligence**, **Hardware Architecture**, and **Cyber Security**.
+> **Graduate Researcher in Artificial Intelligence &middot; Universitas Gadjah Mada (UGM)**  
+> Prospective Ph.D. Applicant &middot; Taiwan (*National Taiwan University - NTU, CSIE / GINM*)  
+> Focus: **Instance-Dependent Cost-Sensitive (IDCS) Machine Learning**, **Explainable AI (XAI) Stability**, and **Trustworthy AI Governance**.
 
 [![Astro](https://img.shields.io/badge/Astro-4.x-FF5D01.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC.svg?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Deployment](https://img.shields.io/badge/Netlify-Static%20SSG-00C7B7.svg?style=flat-square&logo=netlify&logoColor=white)](https://netlify.com)
-[![Performance](https://img.shields.io/badge/Lighthouse-100%2F100-success.svg?style=flat-square)](#performance--quality-invariants)
-[![JavaScript](https://img.shields.io/badge/Client--Side%20JS-0%20KB-brightgreen.svg?style=flat-square)](#architecture--constraints)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F100-success.svg?style=flat-square)](#performance--standards)
+[![Zero-JS](https://img.shields.io/badge/Client--Side%20JS-0%20KB-brightgreen.svg?style=flat-square)](#architectural-principles)
 
 ---
 
-## Architecture & Constraints
+## Academic Profile & Research Vision
 
-1. **Pure Static Generation (SSG):** Pre-rendered at build time. No SSR node servers, no edge functions.
-2. **Zero Client-Side JavaScript:** Exactly **0 KB** client runtime bundle. No framework hydration islands (no React/Vue/Svelte in runtime output) to eliminate Total Blocking Time (TBT) and First Input Delay (FID).
-3. **Local Markdown & MDX:** Strictly local content collections powered by type-safe Zod schema validation.
-4. **No External Dependencies at Runtime:** No external databases (Supabase, Firebase, Postgres), no remote third-party CMS APIs, no client tracking scripts.
-5. **Dark Mode First:** Tailored typographic scale using `@tailwindcss/typography` with optimal contrast ratios.
+This repository hosts the academic research portfolio, working paper summaries, and technical essays of **Frans Alwan Purba**. 
+
+My research investigates the causal trade-offs of automated algorithmic decision-making:
+1. **The Cost-Interpretability Dilemma:** Why profit-driven and instance-dependent loss functions (such as Average Expected Cost / AEC) produce unstable post-hoc explanations (SHAP and LIME) under extreme class imbalance.
+2. **Parametric Regularization as a Stabilizing Instrument:** Restricting model weight complexity ($L_1/L_2$, inverse penalty $C$, tree depth) to curb gradient swings without deteriorating cost savings.
+3. **Causal Hypothesis Testing via Cost-Shuffle:** Conducting stratified cost permutations to decouple customer features from financial loss distributions, validating the *feature-cost entanglement* hypothesis.
+4. **Regulatory Alignment:** Ensuring algorithmic decision boundaries comply with the statutory mandates of the **EU AI Act** (*High-Risk AI Systems*) and **GDPR** (*Right to Explanation*).
+
+---
+
+## Featured Research (Master's Thesis)
+
+- **Title:** *Stabilisasi Penjelasan Model Instance-Dependent Cost-Sensitive Menggunakan Regularisasi dan Uji Permutasi Biaya Terstratifikasi*  
+- **Author:** Frans Alwan Purba (25/563545/PPA/07116)  
+- **Affiliation:** Department of Computer Science & Electronics, FMIPA, Universitas Gadjah Mada (UGM)  
+- **Target Venues:** European Journal of Operational Research (EJOR) / IEEE Transactions on Neural Networks and Learning Systems.  
+- **Essay Adaptation:** [`/blog/cost-interpretability-dilemma-idcs`](https://kognitif-blog.netlify.app/blog/cost-interpretability-dilemma-idcs)
+
+---
+
+## Architectural Principles & Features
+
+- **Dual-Theme Support (Light & Dark Mode):** Instant, flicker-free (zero-FOUC) theme switching tailored for academic reading.
+- **Pure Static Generation (SSG):** Pre-rendered at build time with Astro 4.x. Exactly **0 KB** client-side framework hydration.
+- **Type-Safe Content Collections:** Powered by strict Zod schemas for both published essays (`src/content/blog/`) and active literature deconstructions (`src/content/research/`).
+- **Integrated Cognitive Workbench:** Local development dashboard (`/workbench`) for active-recall Feynman synthesis and reading pipelines.
+- **Academic CV & Bio Page:** Comprehensive curriculum vitae, research statement, and prospective Ph.D. profile accessible at `/about`.
 
 ---
 
@@ -26,126 +49,61 @@
 
 ```text
 kognitif-blog/
-├── .agents/                      # Autonomous agent guidelines & operational skills
-│   ├── rules/
-│   │   ├── personal-context.md   # Developer identity & engineering philosophy
-│   │   ├── project-rules.md      # Hard constraints & technical invariants
-│   │   └── working-rules.md      # Deterministic execution & validation protocol
-│   └── skills/                   # Modular skills (ADK code, deploy, eval, publish, etc.)
-├── public/                       # Static public assets (favicons, SVGs, OG images)
+├── .agents/                      # Autonomous agent guidelines & Socratic research skills
+│   ├── rules/                    # Personal context, project rules, & working protocols
+│   └── skills/                   # Cognitive challenger, code evaluation, & publishing skills
+├── public/                       # Static public assets (favicon, vectors, icons)
 ├── src/
 │   ├── components/               # Pure HTML/CSS presentational components (Callout, etc.)
-│   ├── content/                  # Astro Content Collections (Zod schema & MDX posts)
-│   │   ├── blog/                 # Technical essays (*.mdx)
-│   │   └── config.ts             # Strict content schema definition
-│   ├── layouts/                  # Base HTML wrappers (SEO meta tags, typography shell)
-│   ├── pages/                    # File-based routing (index, blog/[...slug])
-│   └── styles/                   # Global CSS & Tailwind directives
-├── astro.config.mjs              # Astro configuration with Netlify adapter & Shiki syntax theme
-├── netlify.toml                  # Netlify build command, publish dir, & cache headers
-├── package.json                  # Dependencies & execution scripts
-├── tailwind.config.mjs           # Tailwind theme & typography plugin configuration
-└── tsconfig.json                 # Strict TypeScript configuration
+│   ├── content/                  # Astro Content Collections (Zod typed)
+│   │   ├── blog/                 # Published semi-scientific essays (*.mdx)
+│   │   ├── research/             # Active paper deconstructions (*.md)
+│   │   └── config.ts             # Content schemas
+│   ├── layouts/                  # BaseLayout with theme toggle & academic metadata
+│   ├── pages/                    
+│   │   ├── about.astro           # Academic CV, bio, & prospective PhD statement
+│   │   ├── index.astro           # Research portfolio hub & thesis spotlight
+│   │   ├── blog/[...slug].astro  # Essay reader with typography styling
+│   │   └── workbench/            # Local research synthesis dashboard
+│   └── styles/                   # Global CSS & Tailwind typography directives
+├── astro.config.mjs              # Astro configuration (static output, Netlify adapter)
+├── netlify.toml                  # Netlify build configuration & immutable cache headers
+├── package.json                  # Scripts & dependencies
+└── tailwind.config.mjs           # Tailwind theme configuration with typography plugin
 ```
 
 ---
 
-## Getting Started
-
-### Prerequisites
-- **Node.js:** v18.17.0 or higher (v20+ recommended)
-- **Package Manager:** `npm` (v9+) or `pnpm`
-
-### Installation
-Clone the repository and install dependencies from the root directory:
+## Development & Execution
 
 ```bash
-git clone https://github.com/<your-username>/kognitif-blog.git
+# 1. Clone repository
+git clone https://github.com/fransalwan/kognitif-blog.git
 cd kognitif-blog
+
+# 2. Install dependencies
 npm install
-```
 
-### Environment Configuration
-Copy `.env.example` to `.env`:
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Description | Default |
-| :--- | :--- | :--- |
-| `PUBLIC_SITE_URL` | Canonical origin URL for Open Graph & SEO links | `https://kognitif-blog.netlify.app` |
-
----
-
-## Development & Build Commands
-
-All commands **must be executed from the root folder** (`kognitif-blog/`):
-
-```bash
-# Start local development server with hot-reload (http://localhost:4321)
+# 3. Start local development server (http://localhost:4321)
 npm run dev
 
-# Run strict TypeScript and Astro type diagnostics
-npx astro check
+# 4. Access local research workbench
+# Open browser to: http://localhost:4321/workbench
 
-# Compile the pure static site to ./dist
+# 5. Type-check and build production bundle
 npm run build
 
-# Preview the production static output locally
+# 6. Preview production static build locally
 npm run preview
 ```
 
 ---
 
-## Content Authoring Workflow
+## Author & Academic Inquiries
 
-All essays are stored in `src/content/blog/` as `.mdx` files.
-
-### 1. Frontmatter Schema
-Each post must satisfy the Zod schema defined in `src/content/config.ts`:
-
-```yaml
----
-title: "The Thermodynamics of Artificial Intelligence: Energy, Entropy, and Compute"
-description: "Exploring Landauer's principle, thermal limits, and reversible computing."
-pubDate: 2026-10-01
-updatedDate: 2026-10-02       # Optional
-tags: ["AI", "Hardware", "Physics"]
-draft: false                  # Set true to exclude from production build
----
-```
-
-### 2. Using Custom Components
-MDX allows embedding pure static Astro components without client hydration:
-
-```mdx
-import Callout from '../../components/Callout.astro';
-
-<Callout type="info" title="Thermodynamic Invariant">
-Landauer's principle bounds the minimum energy required to erase a bit to $k_B T \ln 2$.
-</Callout>
-```
-
-Supported `type` values: `info`, `warning`, `tip`.
-
----
-
-## Deployment (Netlify)
-
-This project is configured out-of-the-box for **Netlify Static Hosting**:
-
-- **Build Command:** `npm run build`
-- **Publish Directory:** `dist`
-- **Configuration File:** `netlify.toml` (includes immutable asset cache headers and security headers).
-
-Simply connect your GitHub repository to Netlify; production builds trigger automatically on every push to `main`.
-
----
-
-## Performance & Quality Invariants
-
-- **Google Lighthouse Target:** 100 / 100 / 100 / 100
-- **Cumulative Layout Shift (CLS):** 0
-- **Zero JS Payload:** `<script>` tags in output = 0
-- **Typography:** Rendered using `@tailwindcss/typography` with Shiki syntax highlighting (`github-dark`).
+**Frans Alwan Purba**  
+Graduate Researcher in Artificial Intelligence  
+Universitas Gadjah Mada (UGM), Yogyakarta, Indonesia  
+- **Email:** [fransalwan@mail.ugm.ac.id](mailto:fransalwan@mail.ugm.ac.id)  
+- **GitHub:** [@fransalwan](https://github.com/fransalwan)  
+- **Web Portfolio:** [kognitif-blog.netlify.app](https://kognitif-blog.netlify.app)

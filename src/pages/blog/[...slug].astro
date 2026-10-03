@@ -27,21 +27,21 @@ const formatDate = (date: Date) => {
 ---
 
 <BaseLayout
-  title={`${post.data.title} | Frans Alwan Purba`}
+  title={`${post.data.title} | kognitif`}
   description={post.data.description}
   pubDate={post.data.pubDate}
 >
   <article class="max-w-3xl mx-auto">
-    <header class="mb-10 pb-8 border-b border-neutral-200 dark:border-neutral-800 transition-colors">
+    <header class="mb-10 pb-8 border-b border-neutral-800">
       <div class="mb-4">
-        <a href="/" class="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-1 transition-colors">
-          &larr; Back to Research Portfolio
+        <a href="/" class="text-xs font-mono text-emerald-500 hover:text-emerald-400 inline-flex items-center gap-1 transition-colors">
+          &larr; Back to essays
         </a>
       </div>
-      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 font-mono mb-4 leading-tight">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-neutral-100 font-mono mb-4 leading-tight">
         {post.data.title}
       </h1>
-      <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-600 dark:text-neutral-400">
+      <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
@@ -50,9 +50,9 @@ const formatDate = (date: Date) => {
             (Updated: {formatDate(post.data.updatedDate)})
           </span>
         )}
-        <div class="flex flex-wrap gap-2">
+        <div class="flex gap-2">
           {post.data.tags.map((tag: string) => (
-            <span class="px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400">
+            <span class="px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-400">
               #{tag}
             </span>
           ))}
@@ -60,8 +60,9 @@ const formatDate = (date: Date) => {
       </div>
     </header>
 
-    <div class="prose prose-neutral dark:prose-invert prose-lg max-w-none prose-headings:font-mono prose-headings:font-semibold prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-neutral-300 dark:prose-pre:border-neutral-800 prose-pre:bg-neutral-100 dark:prose-pre:bg-neutral-900/80">
+    <div class="prose prose-invert prose-lg max-w-none prose-neutral prose-headings:font-mono prose-headings:font-semibold prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-neutral-800 prose-pre:bg-neutral-900">
       <Content />
     </div>
   </article>
 </BaseLayout>
+

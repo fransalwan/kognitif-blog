@@ -7,25 +7,26 @@ interface Props {
 const { type = 'info', title } = Astro.props;
 
 const styles = {
-  info: 'border-sky-300/80 bg-sky-50/80 text-sky-950 dark:border-cyan-500/40 dark:bg-cyan-950/20 dark:text-cyan-200',
-  warning: 'border-amber-300/80 bg-amber-50/80 text-amber-950 dark:border-amber-500/40 dark:bg-amber-950/20 dark:text-amber-200',
-  tip: 'border-emerald-300/80 bg-emerald-50/80 text-emerald-950 dark:border-emerald-500/40 dark:bg-emerald-950/20 dark:text-emerald-200',
+  info: 'border-cyan-500/40 bg-cyan-950/20 text-cyan-200',
+  warning: 'border-amber-500/40 bg-amber-950/20 text-amber-200',
+  tip: 'border-emerald-500/40 bg-emerald-950/20 text-emerald-200',
 };
 
 const titleStyles = {
-  info: 'text-sky-800 dark:text-cyan-400',
-  warning: 'text-amber-800 dark:text-amber-400',
-  tip: 'text-emerald-800 dark:text-emerald-400',
+  info: 'text-cyan-400',
+  warning: 'text-amber-400',
+  tip: 'text-emerald-400',
 };
 ---
 
-<aside class={`my-6 rounded-lg border p-4 not-prose transition-colors ${styles[type]}`} role="note">
+<aside class={`my-6 rounded-lg border p-4 not-prose ${styles[type]}`} role="note">
   {title && (
     <div class={`text-xs font-mono font-semibold tracking-wider uppercase mb-1.5 ${titleStyles[type]}`}>
       {title}
     </div>
   )}
-  <div class="text-sm leading-relaxed text-neutral-800 dark:text-neutral-300">
+  <div class="text-sm leading-relaxed text-neutral-300">
     <slot />
   </div>
 </aside>
+
