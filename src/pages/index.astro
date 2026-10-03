@@ -35,6 +35,12 @@ const formatDate = (date: Date) => {
     </div>
 
     <div class="divide-y divide-neutral-900">
+      {posts.length === 0 && (
+        <div class="py-12 text-center border border-dashed border-neutral-900 rounded-lg my-4">
+          <p class="text-neutral-400 font-mono text-sm mb-1">Belum ada esai yang dipublikasikan.</p>
+          <p class="text-neutral-600 font-mono text-xs">Sedang dalam proses riset dekonstruksi jurnal ilmiah di Workbench.</p>
+        </div>
+      )}
       {posts.map((post) => (
         <article class="py-6 group">
           <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-2">

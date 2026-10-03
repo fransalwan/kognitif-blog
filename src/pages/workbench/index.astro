@@ -1,0 +1,139 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allResearch = await getCollection('research');
+const allBlogPosts = await getCollection('blog');
+
+// Sort research by addedDate descending
+allResearch.sort((a, b) => b.data.addedDate.valueOf() - a.data.addedDate.valueOf());
+
+const statusColors: Record<string, string> = {
+  reading: 'border-blue-500/30 bg-blue-950/20 text-blue-400',
+  deconstructing: 'border-amber-500/30 bg-amber-950/20 text-amber-400',
+  synthesizing: 'border-purple-500/30 bg-purple-950/20 text-purple-400',
+  ready_to_draft: 'border-emerald-500/30 bg-emerald-950/20 text-emerald-400',
+  published: 'border-neutral-500/30 bg-neutral-900 text-neutral-400',
+};
+
+const statusLabels: Record<string, string> = {
+  reading: '1. Reading Paper',
+  deconstructing: '2. Deconstructing',
+  synthesizing: '3. Cognitive Synthesis',
+  ready_to_draft: '4. Ready to Draft',
+  published: '5. Published',
+};
+---
+
+<BaseLayout
+  title="Cognitive Workbench | kognitif-blog"
+  description="Local research dashboard and cognitive active-recall pipeline."
+>
+  <div class="mb-10">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+      <span class="text-xs font-mono uppercase tracking-widest text-cyan-400">Local Cognitive Gym</span>
+    </div>
+    <h1 class="text-3xl font-mono font-bold tracking-tight text-neutral-100">
+      Research Workbench<span class="text-cyan-400">.</span>
+    </h1>
+    <p class="text-neutral-400 text-sm mt-2 max-w-2xl">
+      Ruang dekonstruksi jurnal ilmiah, pelacakan pemahaman mandiri (Feynman technique), dan jembatan menuju publikasi esai semi-ilmiah.
+    </p>
+  </div>
+
+  <!-- Metric Badges -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+    <div class="p-4 rounded-lg border border-neutral-800 bg-neutral-900/50">
+      <div class="text-xs font-mono text-neutral-500 mb-1">Total Jurnal</div>
+      <div class="text-2xl font-mono font-bold text-neutral-200">{allResearch.length}</div>
+    </div>
+    <div class="p-4 rounded-lg border border-neutral-800 bg-neutral-900/50">
+      <div class="text-xs font-mono text-neutral-500 mb-1">Tahap Sintesis</div>
+      <div class="text-2xl font-mono font-bold text-purple-400">
+        {allResearch.filter(r => r.data.status === 'synthesizing' || r.data.status === 'deconstructing').length}
+      </div>
+    </div>
+    <div class="p-4 rounded-lg border border-neutral-800 bg-neutral-900/50">
+      <div class="text-xs font-mono text-neutral-500 mb-1">Siap Jadi Draft</div>
+      <div class="text-2xl font-mono font-bold text-emerald-400">
+        {allResearch.filter(r => r.data.status === 'ready_to_draft').length}
+      </div>
+    </div>
+    <div class="p-4 rounded-lg border border-neutral-800 bg-neutral-900/50">
+      <div class="text-xs font-mono text-neutral-500 mb-1">Artikel Publish</div>
+      <div class="text-2xl font-mono font-bold text-neutral-200">{allBlogPosts.length}</div>
+    </div>
+  </div>
+
+  <!-- Cognitive Framework Reference -->
+  <section class="mb-12 p-5 rounded-lg border border-neutral-800 bg-neutral-900/30">
+    <h2 class="text-xs font-mono uppercase tracking-wider text-neutral-300 mb-3 flex items-center gap-2">
+      <span class="text-cyan-400 font-bold">&#9656;</span> Checklist Kognitif Mandiri (Socrates & Feynman)
+    </h2>
+    <div class="grid sm:grid-cols-3 gap-4 text-xs font-mono text-neutral-400">
+      <div class="p-3 rounded border border-neutral-800/80 bg-neutral-950">
+        <span class="text-neutral-200 font-semibold block mb-1">1. Plain-Language</span>
+        Mampu menjelaskan mekanisme kerja paper tanpa membaca teks aslinya.
+      </div>
+      <div class="p-3 rounded border border-neutral-800/80 bg-neutral-950">
+        <span class="text-neutral-200 font-semibold block mb-1">2. Hardware Constraint</span>
+        Mengetahui batasan transistor, voltase, memori, atau clock yang mendasarinya.
+      </div>
+      <div class="p-3 rounded border border-neutral-800/80 bg-neutral-950">
+        <span class="text-neutral-200 font-semibold block mb-1">3. Threat Model Clarity</span>
+        Memahami posisi penyerang (co-tenant, bus snooping, atau physical access).
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Papers Pipeline -->
+  <section>
+    <div class="flex items-center justify-between pb-3 mb-6 border-b border-neutral-800">
+      <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-300">Daftar Dekonstruksi Paper</h2>
+      <span class="text-xs font-mono text-neutral-500">File di <code>src/content/research/</code></span>
+    </div>
+
+    <div class="space-y-4">
+      {allResearch.map((item) => (
+        <article class="p-5 rounded-lg border border-neutral-800 bg-neutral-900/40 hover:border-neutral-700 transition-colors">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+            <div>
+              <span class={`inline-block text-xs font-mono px-2 py-0.5 rounded border mb-2 ${statusColors[item.data.status]}`}>
+                {statusLabels[item.data.status]}
+              </span>
+              <h3 class="text-lg font-semibold text-neutral-100">
+                <a href={`/workbench/${item.slug}`} class="hover:text-cyan-400 transition-colors">
+                  {item.data.title}
+                </a>
+              </h3>
+              <p class="text-xs font-mono text-neutral-400 mt-1">
+                Paper: <span class="italic text-neutral-300">"{item.data.paperTitle}"</span> &middot; {item.data.venue} ({item.data.year})
+              </p>
+            </div>
+            <a
+              href={item.data.doiOrUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="shrink-0 text-xs font-mono text-neutral-400 hover:text-cyan-400 border border-neutral-800 rounded px-2.5 py-1"
+            >
+              DOI Link &rarr;
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-neutral-800/60 text-xs font-mono text-neutral-500">
+            <div class="flex gap-2">
+              {item.data.tags.map((tag: string) => (
+                <span class="text-neutral-400">#{tag}</span>
+              ))}
+            </div>
+            <a href={`/workbench/${item.slug}`} class="text-cyan-400 hover:underline">
+              Buka Catatan Dekonstruksi &rarr;
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
