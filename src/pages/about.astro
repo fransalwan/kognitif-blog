@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Curriculum Vitae & Academic Bio | Frans Alwan Purba"
+  description="Academic background, research interests, and prospective PhD candidate profile of Frans Alwan Purba (M.S. in AI @ Universitas Gadjah Mada)."
+>
+  <article class="max-w-3xl mx-auto">
+    <!-- Header Profile -->
+    <header class="mb-12 pb-8 border-b border-neutral-200 dark:border-neutral-800 transition-colors">
+      <div class="flex flex-col sm:flex-row items-start justify-between gap-6">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold font-mono text-neutral-900 dark:text-neutral-100 mb-2">
+            Frans Alwan Purba
+          </h1>
+          <p class="text-sm font-mono text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
+            Graduate Researcher in Artificial Intelligence
+          </p>
+          <p class="text-xs font-mono text-neutral-500">
+            Department of Computer Science &amp; Electronics &middot; FMIPA Universitas Gadjah Mada (UGM)
+          </p>
+        </div>
+
+        <div class="flex flex-wrap sm:flex-col items-start gap-2 text-xs font-mono">
+          <a
+            href="mailto:fransalwan@mail.ugm.ac.id"
+            class="px-3 py-1.5 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 hover:border-emerald-500 transition-colors"
+          >
+            fransalwan@mail.ugm.ac.id
+          </a>
+          <a
+            href="https://github.com/fransalwan"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 rounded border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 hover:border-emerald-500 transition-colors"
+          >
+            github.com/fransalwan
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Prospective PhD Statement -->
+    <section class="mb-12">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold mb-4 flex items-center gap-2">
+        <span class="text-emerald-600 dark:text-emerald-400">&#9656;</span> Prospective PhD Research Statement
+      </h2>
+      <div class="p-6 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100/60 dark:bg-neutral-900/40 text-sm leading-relaxed text-neutral-800 dark:text-neutral-300 space-y-3">
+        <p>
+          I am actively preparing applications for <strong>Doctoral (Ph.D.) programs in Computer Science and Artificial Intelligence in Taiwan</strong>, with a primary aspiration to join premier research groups at <strong>National Taiwan University (NTU)</strong> (e.g., Department of Computer Science &amp; Information Engineering / Graduate Institute of Networking and Multimedia).
+        </p>
+        <p>
+          My objective is to investigate the intersection of <strong>Trustworthy &amp; Cost-Sensitive Machine Learning</strong>, <strong>Explainable AI (XAI) Robustness</strong>, and <strong>Hardware-Aware Algorithmic Constraints</strong>. Taiwan provides an unmatched global ecosystem where frontier machine learning theory converges with world-leading semiconductor architecture and hardware co-design.
+        </p>
+      </div>
+    </section>
+
+    <!-- Research Interests -->
+    <section class="mb-12">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold mb-4 flex items-center gap-2">
+        <span class="text-emerald-600 dark:text-emerald-400">&#9656;</span> Research Interests
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4 text-xs font-mono">
+        <div class="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-1">Instance-Dependent Cost-Sensitive Learning</h3>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Algorithmic frameworks optimizing empirical loss functions tailored to instance-specific monetary stakes (Average Expected Cost / AEC) in high-risk financial decisions.
+          </p>
+        </div>
+        <div class="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-1">Explainable AI (XAI) Stability &amp; Robustness</h3>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Diagnosing and mitigating feature attribution instability in post-hoc explainers (SHAP, LIME) under extreme class imbalance and non-uniform loss surfaces.
+          </p>
+        </div>
+        <div class="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-1">Empirical Algorithmics &amp; K-Fold Stability</h3>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Rigorous statistical evaluation of ranking agreement (Sequential Rank Agreement / SRA, CoV) and hypothesis-driven causality testing (Cost-Shuffle permutations).
+          </p>
+        </div>
+        <div class="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <h3 class="text-sm font-bold text-neutral-900 dark:text-neutral-100 mb-1">AI Governance &amp; High-Risk Regulation</h3>
+          <p class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Aligning automated algorithmic decision boundaries with statutory mandates: EU AI Act High-Risk standards and GDPR Right-to-Explanation requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="mb-12">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold mb-4 flex items-center gap-2">
+        <span class="text-emerald-600 dark:text-emerald-400">&#9656;</span> Education
+      </h2>
+      <div class="space-y-6">
+        <div class="p-4 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/30">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
+            <h3 class="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100">
+              Universitas Gadjah Mada (UGM)
+            </h3>
+            <span class="text-xs font-mono text-neutral-500">2025 &ndash; Present</span>
+          </div>
+          <div class="text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-2">
+            Master of Science (M.S.) in Artificial Intelligence &middot; FMIPA
+          </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Thesis: <em>Stabilisasi Penjelasan Model Instance-Dependent Cost-Sensitive Menggunakan Regularisasi dan Uji Permutasi Biaya Terstratifikasi</em>. Focus on Trustworthy Machine Learning and post-hoc explanation stability.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Publications & Working Manuscripts -->
+    <section class="mb-12">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold mb-4 flex items-center gap-2">
+        <span class="text-emerald-600 dark:text-emerald-400">&#9656;</span> Research Manuscripts &amp; Working Papers
+      </h2>
+      <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/40">
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 uppercase font-semibold">
+          Master's Thesis Proposal (Under Review)
+        </span>
+        <h3 class="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-2 mb-1">
+          Stabilizing Explanations of Instance-Dependent Cost-Sensitive Classifiers via Regularization and Stratified Cost Permutation
+        </h3>
+        <p class="text-xs font-mono text-neutral-500 mb-3">
+          <strong>Frans Alwan Purba</strong> (2026). Target: European Journal of Operational Research (EJOR) / IEEE Transactions.
+        </p>
+        <p class="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
+          Addresses the open question raised by Ballegeer et al. (EJOR 2025) regarding the severe instability of SHAP and LIME in IDCS credit scoring. Proposes parametric regularization to curb weight complexity and stratified cost permutations to establish causal validation.
+        </p>
+        <a
+          href="/blog/cost-interpretability-dilemma-idcs"
+          class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+        >
+          Read the Essay Adaptation &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- Technical & Methodological Competencies -->
+    <section class="mb-12">
+      <h2 class="text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 font-bold mb-4 flex items-center gap-2">
+        <span class="text-emerald-600 dark:text-emerald-400">&#9656;</span> Technical &amp; Research Competencies
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-3 text-xs font-mono">
+        <div class="p-3 rounded border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <span class="text-neutral-900 dark:text-neutral-200 font-semibold block mb-1">Languages</span>
+          Python, C/C++, TypeScript, R, SQL, LaTeX
+        </div>
+        <div class="p-3 rounded border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <span class="text-neutral-900 dark:text-neutral-200 font-semibold block mb-1">ML &amp; XAI</span>
+          PyTorch, XGBoost, Scikit-learn, SHAP, LIME, Resampling
+        </div>
+        <div class="p-3 rounded border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
+          <span class="text-neutral-900 dark:text-neutral-200 font-semibold block mb-1">Systems &amp; Tools</span>
+          Linux/Bash, Git, Astro SSG, Tailwind CSS, Docker
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
