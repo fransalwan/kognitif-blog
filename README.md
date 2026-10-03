@@ -1,7 +1,7 @@
 # Frans Alwan Purba &middot; Academic Research Portfolio
 
-> **Graduate Researcher in Artificial Intelligence &middot; Universitas Gadjah Mada (UGM)**  
-> Prospective Ph.D. Applicant &middot; Taiwan (*National Taiwan University - NTU, CSIE / GINM*)  
+> **Master's Student in Artificial Intelligence &middot; Universitas Gadjah Mada (UGM)**  
+> Prospective Ph.D. Applicant  
 > Focus: **Instance-Dependent Cost-Sensitive (IDCS) Machine Learning**, **Explainable AI (XAI) Stability**, and **Trustworthy AI Governance**.
 
 [![Astro](https://img.shields.io/badge/Astro-4.x-FF5D01.svg?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
@@ -102,7 +102,7 @@ npm run preview
 ## Author & Academic Inquiries
 
 **Frans Alwan Purba**  
-Graduate Researcher in Artificial Intelligence  
+Master's Student in Artificial Intelligence  
 Universitas Gadjah Mada (UGM), Yogyakarta, Indonesia  
 - **Email:** [fransalwanpurba@mail.ugm.ac.id](mailto:fransalwanpurba@mail.ugm.ac.id)  
 - **GitHub:** [@fransalwan](https://github.com/fransalwan)  
