@@ -1,0 +1,98 @@
+---
+title: "The Cost-Interpretability Dilemma: Mengapa Model AI yang Paling Hemat Biaya Justru Paling Tidak Stabil?"
+description: "Analisis mekanistik paradoks model Instance-Dependent Cost-Sensitive (IDCS) dalam credit scoring: optimasi kerugian finansial yang memicu keruntuhan stabilitas penjelasan SHAP dan LIME."
+pubDate: 2026-10-03
+tags: ["AI", "Credit Scoring", "Explainable AI", "Cyber Security", "Cost-Sensitive", "Thesis Research"]
+draft: false
+---
+import Callout from '../../components/Callout.astro';
+
+Di industri perbankan dan tekfin, kesalahan sistem AI dalam menyetujui pinjaman tidak pernah bernilai simetris. Memberikan kredit macet kepada nasabah yang meminjam Rp 10 juta menimbulkan kerugian finansial yang sangat jauh berbeda dibandingkan memberikan pinjaman kepada korporasi senilai Rp 10 miliar. 
+
+Sebagian besar algoritma pembelajaran mesin standar—mulai dari Regresi Logistik hingga XGBoost—mengabaikan kenyataan ini. Model-model konvensional hanya mengoptimalkan metrik statistik murni (*discriminatory power* seperti AUC atau akurasi) dengan meminimalkan fungsi kerugian *Cross-Entropy*.
+
+Untuk menjawab kebutuhan bisnis tersebut, literatur *machine learning* finansial melahirkan paradigma **Instance-Dependent Cost-Sensitive (IDCS)**. Alih-alih mengejar akurasi biner, classifier IDCS mengoptimalkan langsung estimasi kerugian nominal uang riil tiap nasabah (*Average Expected Cost* / AEC). Namun, efisiensi biaya yang luar biasa ini melahirkan sebuah paradoks baru yang berbahaya: **keruntuhan stabilitas penjelasan (XAI explanation instability)**.
+
+---
+
+## 1. Anatomi Paradoks: Cross-Entropy vs Average Expected Cost (AEC)
+
+Pada klasifikasi tradisional, model memetakan vektor fitur masukan `x` secara langsung ke estimasi probabilitas posterior bersyarat:
+
+```text
+s(x) = P(Y = 1 | x)
+```
+
+Hubungan matematis ini bersifat murni merefleksikan relasi kausalitas antara profil nasabah `x` dengan kemungkinan terjadinya gagal bayar `Y = 1`.
+
+<Callout type="info" title="Formulasi Loss IDCS (Average Expected Cost)">
+Pada model IDCS (seperti `csboost`, `cslogit`, dan `csnet`), fungsi loss meminimalkan Average Expected Cost (AEC) yang mengalikan probabilitas dengan nominal pinjaman individual A_i dan konstanta Loss Given Default (LGD):
+
+```text
+AEC(y_i, s(x_i), A_i) = y_i * [(1 - s(x_i)) * A_i * LGD] + (1 - y_i) * [s(x_i) * (r_i + C_alt)]
+```
+</Callout>
+
+Penyisipan nominal `A_i` ke dalam gradien loss mengubah permukaan optimasi (*loss landscape*) secara mendasar. Bobot model tidak lagi sekadar mempelajari siapa yang berisiko macet, tetapi **membobotkan perhatian matematika silikon secara berlebihan pada nasabah berpinjaman raksasa**.
+
+---
+
+## 2. Bukti Empiris Instabilitas Penjelasan (Ballegeer dkk., 2025)
+
+Dalam studi pionir yang dipublikasikan pada *European Journal of Operational Research* (EJOR), Ballegeer, Bogaert, dan Benoit (2025) menguji dampak fungsi loss IDCS terhadap dua teknik *eXplainable AI* (XAI) paling dominan di dunia industri: **SHAP (Shapley Additive exPlanations)** dan **LIME (Local Interpretable Model-agnostic Explanations)**.
+
+Hasil eksperimen pada 4 dataset acuan (GMSC, VUB, HMEQ, dan SGCS) menunjukkan temuan yang mencengangkan:
+
+1. **Keunggulan Biaya Terbukti:** Model varian IDCS (`csboost`, `cslogit`, `csnet`) secara konsisten mengalahkan model standar pada metrik penghematan biaya relatif (*relAEC* mencapai 0.554 vs 0.288 pada boost standar).
+2. **Penjelasan Berayun Liar:** Penjelasan SHAP dan LIME pada model IDCS menunjukkan variabilitas nilai kepentingan fitur (*Coefficient of Variation* / CoV) yang **signifikan lebih tinggi secara statistik** (`p < 0.001` melalui Two-Sample Kolmogorov–Smirnov Test) dibanding model biasa.
+3. **Eskalasi Ketidakseimbangan Kelas (Class Imbalance):** Ketika rasio kelas minoritas (gagal bayar) diperketat hingga rasio ekstrem 95/5 atau 99/1—kondisi yang mencerminkan rasio kredit macet riil perbankan—ketidakstabilan penjelasan model IDCS meledak tajam.
+
+<Callout type="warning" title="Mengapa Stabilitas Penjelasan Krusial?">
+Jika dua nasabah dengan profil risiko yang hampir identik mengajukan pinjaman, model IDCS dapat memberikan alasan penolakan yang saling bertolak belakang hanya karena sedikit variasi penyamplingan data pelatihan. Hal ini meruntuhkan aspek Attributable Analytics (AA) dan akuntabilitas algoritma.
+</Callout>
+
+---
+
+## 3. Implikasi Regulasi: Ancaman Kepatuhan EU AI Act & GDPR
+
+Ketidakstabilan ini bukan sekadar persoalan akademis, melainkan risiko hukum nyata bagi institusi keuangan:
+
+* **EU AI Act:** Berdasarkan regulasi Uni Eropa terbaru, sistem pemberian skor kredit (*credit scoring*) diklasifikasikan ke dalam kategori **High-Risk AI Systems**, yang mewajibkan transparansi tingkat tinggi, auditabilitas, dan mitigasi bias yang ketat.
+* **GDPR (Right to Explanation):** Pasal regulasi perlindungan data memberikan hak kepada setiap konsumen untuk memperoleh penjelasan logis dan konsisten atas keputusan otomatis yang merugikan mereka.
+* **Vulnerabilitas Terhadap Gugatan Diskriminasi:** Ketika kontribusi fitur berayun secara acak, fitur sensitif (seperti umur atau proksi demografis) dapat terangkat ke peringkat teratas akibat derau numerik, memaparkan bank pada tuduhan diskriminasi kredit ilegal.
+
+---
+
+## 4. Hipotesis "Entanglement Fitur-Biaya" dan Ruang Uji Kausal
+
+Untuk menjelaskan mengapa model IDCS begitu tidak stabil, Ballegeer dkk. mengajukan sebuah hipotesis mekanistik:
+
+> *"IDCS classifiers entangle features, labels, and costs... Perturbing features in SHAP and LIME thus captures not only the influence of x on Y but also the learned interaction with C, resulting in less robust explanations."*
+
+Namun, pernyataan di atas **masih berstatus dugaan teoretis (*we hypothesize*)**. Penulis belum pernah menguji secara kausal apakah instabilitas tersebut murni akibat keterikatan (*entanglement*) distribusi biaya, ataukah akibat faktor lain seperti miskalibrasi probabilitas dan derau algoritma penjelas (*explainer noise*).
+
+<Callout type="tip" title="Arah Tesis Frans Alwan Purba (UGM, 2026)">
+Celah inilah yang menjadi fondasi tesis di Universitas Gadjah Mada:
+
+1. **Lengan Regularisasi:** Menguji apakah instabilitas ini dapat diredam di tingkat kompleksitas bobot (L1/L2, penalty parameter C, tree depth) tanpa merusak keunggulan relAEC.
+2. **Lengan Permutasi Biaya Terstratifikasi (Cost-Shuffle):** Menguji secara kausal hipotesis entanglement dengan memutus korelasi antara fitur peminjam dan besaran pinjamannya A_i melalui pengacakan terstratifikasi.
+</Callout>
+
+---
+
+## 5. Kesimpulan & Diskusi Lanjutan
+
+Paradoks biaya versus interpretabilitas pada model IDCS menegaskan bahwa **efisiensi finansial tidak boleh dibayar dengan ketidakpastian pengambilan keputusan**. Sebelum model hemat biaya ini dapat diadopsi secara luas di sektor perbankan yang diregulasi ketat, mekanisme penyebab ketidakstabilan penjelasannya harus dilokalisasi secara kausal dan dimitigasi secara presisi.
+
+Pada artikel riset berikutnya di *kognitif-blog*, kita akan membedah metodologi penetapan **Lantai Derau (*Noise Floor*)** untuk memisahkan variabilitas yang berasal dari algoritma SHAP/LIME itu sendiri versus instabilitas yang berasal dari model IDCS.
+
+---
+
+## Referensi & Daftar Pustaka
+
+1. **Ballegeer, M., Bogaert, M., & Benoit, D. F. (2025).** *Evaluating the stability of model explanations in instance-dependent cost-sensitive credit scoring.* European Journal of Operational Research, 326(2), 630–640. DOI: `10.1016/j.ejor.2025.05.039`
+2. **Bahnsen, A. C., Aouada, D., & Ottersten, B. (2014).** *Example-dependent cost-sensitive logistic regression for credit scoring.* 2014 13th International Conference on Machine Learning and Applications (ICMLA), 263–269.
+3. **Lundberg, S. M., & Lee, S.-I. (2017).** *A unified approach to interpreting model predictions.* Advances in Neural Information Processing Systems (NeurIPS 30), 4768–4777.
+4. **Ribeiro, M. T., Singh, S., & Guestrin, C. (2016).** *"Why should I trust you?": Explaining the predictions of any classifier.* Proceedings of the 22nd ACM SIGKDD, 1135–1144.
+5. **Elkan, C. (2001).** *The foundations of cost-sensitive learning.* Proceedings of the 17th International Joint Conference on Artificial Intelligence (IJCAI), 973–978.
+6. **Purba, F. A. (2026).** *Stabilisasi Penjelasan Model Instance-Dependent Cost-Sensitive Menggunakan Regularisasi dan Uji Permutasi Biaya Terstratifikasi.* Usulan Penelitian Tesis S2, Departemen Ilmu Komputer dan Elektronika, FMIPA, Universitas Gadjah Mada.
